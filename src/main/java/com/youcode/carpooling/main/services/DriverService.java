@@ -9,4 +9,11 @@ public class DriverService {
         this.driverRepository = driverRepository;
         this.driverMapper = driverMapper;
     }
+
+    public DriverResponse create(DriverRequest request){
+        Driver driver = driverMapper.toEntity(request);
+        Driver saved = driverRepository.save(driver);
+        return  driverMapper.toResponse(saved);
+    }
+
 }
