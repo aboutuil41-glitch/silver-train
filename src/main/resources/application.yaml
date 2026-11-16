@@ -1,3 +1,9 @@
 spring:
   application:
     name: Carpooling
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/carpooling
+    username: postgres
+    password: postgres
+
