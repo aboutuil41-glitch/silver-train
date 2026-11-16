@@ -30,4 +30,8 @@ public class DriverController {
         return driverService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public DriverResponse findById(@PathVariable Long id){
+        return driverService.findById(id);
+    }
 }
