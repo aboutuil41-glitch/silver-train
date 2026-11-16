@@ -25,4 +25,9 @@ public class DriverController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @GetMapping
+    public List<DriverResponse> getAll(){
+        return driverService.getAll();
+    }
+
 }
