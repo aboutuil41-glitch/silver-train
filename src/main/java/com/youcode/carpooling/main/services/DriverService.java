@@ -16,4 +16,10 @@ public class DriverService {
         return  driverMapper.toResponse(saved);
     }
 
+    public List<DriverResponse> getAll(){
+        return driverRepository.findAll().stream()
+                .map(driverMapper::toResponse)
+                .toList();
+    }
+
 }
