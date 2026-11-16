@@ -18,4 +18,11 @@ public class DriverController {
     public DriverController(DriverService driverService) {
         this.driverService = driverService;
     }
+
+    @PostMapping
+    public ResponseEntity<DriverResponse> create(@Valid @RequestBody DriverRequest request){
+        DriverResponse response = driverService.create(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
 }
