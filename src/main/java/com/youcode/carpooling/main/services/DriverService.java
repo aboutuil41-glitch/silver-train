@@ -22,4 +22,9 @@ public class DriverService {
                 .toList();
     }
 
+    public DriverResponse findById(Long id){
+        Driver driver = driverRepository.findById(id).orElse(null);
+        return driverMapper.toResponse(driver);
+    }
+
 }
