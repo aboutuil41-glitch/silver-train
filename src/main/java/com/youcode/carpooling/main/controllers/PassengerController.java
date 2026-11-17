@@ -9,4 +9,10 @@ public class PassengerController {
     }
 
 
+    @PostMapping
+    public ResponseEntity<PassengerResponse> create(@Valid @RequestBody PassengerRequest request){
+        PassengerResponse response = passengerService.create(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
 }
