@@ -35,4 +35,15 @@ public class VehicleService {
                 .toList();
     }
 
+    public VehicleResponse update(Long id, VehicleRequest request){
+        Vehicle vehicle = vehicleRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Passenger with email " + id + " not found"));
+
+        if(vehicleRepository.existsByRegistrationNumberAndIdNot(request.registrationNumber(), id)){
+            throw new BusinessRuleException(request.registrationNumber() + " already exists");
+        }
+
+        vehicleMapper.updateEntity(request, vehicle);
+        return vehicleMapper.toResponse(vehicleRepository.save(vehicle));
+    }
 }
