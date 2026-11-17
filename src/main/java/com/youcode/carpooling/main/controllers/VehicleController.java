@@ -9,4 +9,10 @@ public class VehicleController {
         this.vehicleService = vehicleService;
     }
 
+    @PostMapping
+    public ResponseEntity<VehicleResponse> create(@Valid @RequestBody VehicleRequest request){
+        VehicleResponse response = vehicleService.create(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
 }
