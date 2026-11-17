@@ -28,4 +28,11 @@ public class VehicleService {
         Vehicle created = vehicleRepository.save(vehicle);
         return vehicleMapper.toResponse(created);
     }
+
+    public List<VehicleResponse> getAll(){
+        return vehicleRepository.findAll().stream()
+                .map(vehicleMapper::toResponse)
+                .toList();
+    }
+
 }
