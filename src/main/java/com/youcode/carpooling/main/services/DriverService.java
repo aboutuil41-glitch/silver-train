@@ -48,6 +48,7 @@ public class DriverService {
     @Transactional
     public DriverResponse update(Long id, DriverRequest request) {
         Driver driver = driverRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Driver " + id + " not found"));
         driverMapper.updateEntity(request, driver);
         return driverMapper.toResponse(driverRepository.save(driver));
     }
