@@ -15,4 +15,9 @@ public class VehicleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @GetMapping
+    public List<VehicleResponse> getAll(){
+        return vehicleService.getAll();
+    }
+
 }
