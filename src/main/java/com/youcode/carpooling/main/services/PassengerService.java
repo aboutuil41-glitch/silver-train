@@ -1,4 +1,16 @@
 package com.youcode.carpooling.main.services;
+
+import com.youcode.carpooling.common.exceptions.BusinessRuleException;
+import com.youcode.carpooling.common.exceptions.ResourceNotFoundException;
+import com.youcode.carpooling.main.dto.PassengerRequest;
+import com.youcode.carpooling.main.dto.PassengerResponse;
+import com.youcode.carpooling.main.entities.Passenger;
+import com.youcode.carpooling.main.mapper.PassengerMapper;
+import com.youcode.carpooling.main.repositories.PassengerRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class PassengerService {
     private final PassengerRepository passengerRepository;
