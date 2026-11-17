@@ -46,4 +46,10 @@ public class VehicleService {
         vehicleMapper.updateEntity(request, vehicle);
         return vehicleMapper.toResponse(vehicleRepository.save(vehicle));
     }
+
+    public List<VehicleResponse> getByDriver(Long driverId){
+        return vehicleRepository.findByDriver_Id(driverId).stream()
+                .map(vehicleMapper::toResponse)
+                .toList();
+    }
 }
