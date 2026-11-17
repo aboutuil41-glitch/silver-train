@@ -12,6 +12,11 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.FORBIDDEN, "forbidden", ex.getMessage(), request);
     }
 
+    @ExceptionHandler(BusinessRuleException.class)
+    public ProblemDetail handleBusinessRule(BusinessRuleException ex, HttpServletRequest request) {
+        return build(HttpStatus.CONFLICT, "business-rule-violation", ex.getMessage(), request);
+    }
+
     private ProblemDetail build(HttpStatus status, String type, String message, HttpServletRequest request) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(status, message);
         problem.setType(URI.create("/errors/" + type));
