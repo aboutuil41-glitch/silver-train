@@ -30,8 +30,6 @@ public class DriverService {
             throw new BusinessRuleException("A driver with license number " + request.licenseNumber() + " already exists");
 
         Driver driver = driverMapper.toEntity(request);
-        Driver saved = driverRepository.save(driver);
-        return  driverMapper.toResponse(saved);
         Driver created = driverRepository.save(driver);
         return  driverMapper.toResponse(created);
     }
@@ -43,7 +41,7 @@ public class DriverService {
     }
 
     public DriverResponse findById(Long id){
-        Driver driver = driverRepository.findById(id).orElse(null);
+        Driver driver = driverRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Driver " + id + " not found"));
         return driverMapper.toResponse(driver);
     }
 
