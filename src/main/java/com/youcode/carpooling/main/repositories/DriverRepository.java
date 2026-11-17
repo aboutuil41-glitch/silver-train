@@ -13,4 +13,6 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
 
     boolean existsByEmailAndIdNot(String email, Long id);
 
+    boolean existsByLicenseNumberAndIdNot(String licenseNumber, Long id);
+
 }
