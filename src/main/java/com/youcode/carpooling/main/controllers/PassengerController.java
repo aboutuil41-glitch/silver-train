@@ -15,4 +15,9 @@ public class PassengerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @GetMapping
+    public List<PassengerResponse> getAll(){
+        return passengerService.getAll();
+    }
+
 }
