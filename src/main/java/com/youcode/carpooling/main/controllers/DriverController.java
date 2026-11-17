@@ -41,4 +41,8 @@ public class DriverController {
         return driverService.update(id, request);
     }
 
+    @GetMapping("/search")
+    public List<DriverResponse> search(@RequestParam String q) {
+        return driverService.search(q);
+    }
 }
