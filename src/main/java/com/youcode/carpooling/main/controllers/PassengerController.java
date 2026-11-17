@@ -1,4 +1,18 @@
 package com.youcode.carpooling.main.controllers;
+
+
+import com.youcode.carpooling.main.dto.DriverRequest;
+import com.youcode.carpooling.main.dto.DriverResponse;
+import com.youcode.carpooling.main.dto.PassengerRequest;
+import com.youcode.carpooling.main.dto.PassengerResponse;
+import com.youcode.carpooling.main.services.PassengerService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/passenger")
 public class PassengerController {
