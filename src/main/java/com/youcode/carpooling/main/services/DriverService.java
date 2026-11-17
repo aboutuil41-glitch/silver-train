@@ -52,6 +52,10 @@ public class DriverService {
 
         if (driverRepository.existsByEmailAndIdNot(request.email(), id))
             throw new BusinessRuleException("Email " + request.email() + " is already used by another driver");
+
+        if (driverRepository.existsByLicenseNumberAndIdNot(request.licenseNumber(), id))
+            throw new BusinessRuleException("License number " + request.licenseNumber() + " is already used by another driver");
+
         driverMapper.updateEntity(request, driver);
         return driverMapper.toResponse(driverRepository.save(driver));
     }
