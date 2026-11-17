@@ -26,6 +26,9 @@ public class DriverService {
         if (driverRepository.existsByEmail(request.email()))
             throw new BusinessRuleException("A driver with email " + request.email() + " already exists");
 
+        if (driverRepository.existsByLicenseNumber(request.licenseNumber()))
+            throw new BusinessRuleException("A driver with license number " + request.licenseNumber() + " already exists");
+
         Driver driver = driverMapper.toEntity(request);
         Driver saved = driverRepository.save(driver);
         return  driverMapper.toResponse(saved);
