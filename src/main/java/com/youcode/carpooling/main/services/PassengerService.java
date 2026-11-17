@@ -18,4 +18,10 @@ public class PassengerService {
         return  passengerMapper.toResponse(created);
     }
 
+    public List<PassengerResponse> getAll(){
+        return passengerRepository.findAll().stream()
+                .map(passengerMapper::toResponse)
+                .toList();
+    }
+
 }
