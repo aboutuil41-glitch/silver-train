@@ -20,4 +20,9 @@ public class VehicleController {
         return vehicleService.getAll();
     }
 
+    @GetMapping("/driver/{id}")
+    public List<VehicleResponse> findById(@PathVariable Long id){
+        return vehicleService.getByDriver(id);
+    }
+
 }
