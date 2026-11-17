@@ -8,4 +8,14 @@ public class PassengerService {
         this.passengerRepository = passengerRepository;
         this.passengerMapper = passengerMapper;
     }
+
+    public PassengerResponse create(PassengerRequest request){
+        if (passengerRepository.existsByEmail(request.email()))
+            throw new BusinessRuleException("A passenger with email " + request.email() + " already exists");
+
+        Passenger passenger = passengerMapper.toEntity(request);
+        Passenger created = passengerRepository.save(passenger);
+        return  passengerMapper.toResponse(created);
+    }
+
 }
