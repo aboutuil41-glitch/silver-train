@@ -49,6 +49,9 @@ public class DriverService {
     public DriverResponse update(Long id, DriverRequest request) {
         Driver driver = driverRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Driver " + id + " not found"));
+
+        if (driverRepository.existsByEmailAndIdNot(request.email(), id))
+            throw new BusinessRuleException("Email " + request.email() + " is already used by another driver");
         driverMapper.updateEntity(request, driver);
         return driverMapper.toResponse(driverRepository.save(driver));
     }
