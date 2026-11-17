@@ -25,4 +25,8 @@ public class PassengerController {
         return passengerService.findById(id);
     }
 
+    @GetMapping("/search")
+    public PassengerResponse findByEmail(@RequestParam String email) {
+        return passengerService.findByEmail(email);
+    }
 }
