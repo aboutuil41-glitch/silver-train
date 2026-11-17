@@ -23,6 +23,8 @@ public class DriverService {
         Driver driver = driverMapper.toEntity(request);
         Driver saved = driverRepository.save(driver);
         return  driverMapper.toResponse(saved);
+        Driver created = driverRepository.save(driver);
+        return  driverMapper.toResponse(created);
     }
 
     public List<DriverResponse> getAll(){
