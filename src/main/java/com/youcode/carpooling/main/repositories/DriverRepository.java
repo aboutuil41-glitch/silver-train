@@ -15,4 +15,5 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
 
     boolean existsByLicenseNumberAndIdNot(String licenseNumber, Long id);
 
+    List<Driver> findByLastNameContainingIgnoreCaseOrFirstNameContainingIgnoreCaseOrEmailContainingIgnoreCase(String lastName, String firstName, String email);
 }
