@@ -29,4 +29,10 @@ public class PassengerService {
         return passengerMapper.toResponse(passenger);
     }
 
+    public PassengerResponse findByEmail(String email) {
+        Passenger passenger = passengerRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Passenger with email " + email + " not found"));
+        return passengerMapper.toResponse(passenger);
+    }
+
 }
