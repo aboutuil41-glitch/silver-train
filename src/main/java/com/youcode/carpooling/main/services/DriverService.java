@@ -38,4 +38,7 @@ public class DriverService {
         return driverMapper.toResponse(driver);
     }
 
+    @Transactional
+    public DriverResponse update(Long id, DriverRequest request) {
+        Driver driver = driverRepository.findById(id)
 }
