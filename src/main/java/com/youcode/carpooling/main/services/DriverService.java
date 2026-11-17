@@ -44,4 +44,13 @@ public class DriverService {
         driverMapper.updateEntity(request, driver);
         return driverMapper.toResponse(driverRepository.save(driver));
     }
+
+    public List<DriverResponse> search(String q) {
+        return driverRepository
+                .findByLastNameContainingIgnoreCaseOrFirstNameContainingIgnoreCaseOrEmailContainingIgnoreCase(q, q, q)
+                .stream()
+                .map(driverMapper::toResponse)
+                .toList();
+    }
+
 }
