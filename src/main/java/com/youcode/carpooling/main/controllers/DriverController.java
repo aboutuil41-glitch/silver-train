@@ -38,4 +38,10 @@ public class DriverController {
     public DriverResponse findById(@PathVariable Long id){
         return driverService.findById(id);
     }
+
+    @PutMapping("/{id}")
+    public DriverResponse update(@PathVariable Long id, @Valid @RequestBody DriverRequest request) {
+        return driverService.update(id, request);
+    }
+
 }
