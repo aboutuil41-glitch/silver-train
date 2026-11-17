@@ -17,6 +17,14 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.CONFLICT, "business-rule-violation", ex.getMessage(), request);
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ProblemDetail handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
+        String message = ex.getBindingResult().getFieldErrors().stream()
+                .map(e -> e.getField() + ": " + e.getDefaultMessage())
+                .collect(Collectors.joining("; "));
+        return build(HttpStatus.BAD_REQUEST, "validation-error", message, request);
+    }
+
     private ProblemDetail build(HttpStatus status, String type, String message, HttpServletRequest request) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(status, message);
         problem.setType(URI.create("/errors/" + type));
