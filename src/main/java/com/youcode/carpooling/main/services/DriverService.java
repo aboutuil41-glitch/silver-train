@@ -41,4 +41,7 @@ public class DriverService {
     @Transactional
     public DriverResponse update(Long id, DriverRequest request) {
         Driver driver = driverRepository.findById(id)
+        driverMapper.updateEntity(request, driver);
+        return driverMapper.toResponse(driverRepository.save(driver));
+    }
 }
