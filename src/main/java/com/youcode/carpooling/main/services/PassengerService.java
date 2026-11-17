@@ -24,4 +24,9 @@ public class PassengerService {
                 .toList();
     }
 
+    public PassengerResponse findById(Long id){
+        Passenger passenger = passengerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Driver " + id + " not found"));
+        return passengerMapper.toResponse(passenger);
+    }
+
 }
