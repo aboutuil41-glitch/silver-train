@@ -20,4 +20,9 @@ public class PassengerController {
         return passengerService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public PassengerResponse findById(@PathVariable Long id){
+        return passengerService.findById(id);
+    }
+
 }
