@@ -25,4 +25,9 @@ public class VehicleController {
         return vehicleService.getByDriver(id);
     }
 
+    @PutMapping("/{id}")
+    public VehicleResponse update(@PathVariable Long id, @Valid @RequestBody VehicleRequest request) {
+        return vehicleService.update(id, request);
+    }
+
 }
