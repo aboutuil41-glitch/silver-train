@@ -14,4 +14,8 @@ public class TripController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @GetMapping
+    public List<TripResponse> getAll(){
+        return tripService.getAll();
+    }
 }
