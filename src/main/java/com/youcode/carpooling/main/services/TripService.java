@@ -13,6 +13,14 @@ public class TripService {
         this.tripMapper = tripMapper;
     }
 
+    @Transactional
+    public TripResponse create(TripRequest request) {
+        Driver driver = driverRepository.findById(request.driverId())
+                .orElseThrow(() -> new ResourceNotFoundException("Driver " + request.driverId() + " not found"));
+        trip.setDriver(driver);
+        return tripMapper.toResponse(tripRepository.save(trip));
+    }
+
     public List<TripResponse> getAll(){
         return tripRepository.findAll().stream().map(tripMapper::toResponse).toList();
     }
