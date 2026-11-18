@@ -1,5 +1,12 @@
 package com.youcode.carpooling.main.mapper;
+
+
+import com.youcode.carpooling.main.dto.TripRequest;
+import com.youcode.carpooling.main.dto.TripResponse;
+import com.youcode.carpooling.main.entities.Trip;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
 @Mapper(componentModel = "spring")
 public interface TripMapper {
 
