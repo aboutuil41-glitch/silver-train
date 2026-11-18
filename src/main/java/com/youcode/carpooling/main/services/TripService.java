@@ -30,6 +30,10 @@ public class TripService {
                     + vehicle.getCapacity() + " seats maximum)");
         }
 
+        if (!request.departureDate().isAfter(LocalDateTime.now())) {
+            throw new InvalidRequestException("The departure must be in the future");
+        }
+
         trip.setDriver(driver);
         trip.setVehicle(vehicle);
         return tripMapper.toResponse(tripRepository.save(trip));
