@@ -1,4 +1,16 @@
 package com.youcode.carpooling.main.controllers;
+
+
+import com.youcode.carpooling.main.dto.TripRequest;
+import com.youcode.carpooling.main.dto.TripResponse;
+import com.youcode.carpooling.main.services.TripService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/trip")
 public class TripController {
