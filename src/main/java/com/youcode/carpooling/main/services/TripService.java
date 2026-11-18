@@ -13,5 +13,8 @@ public class TripService {
         this.tripMapper = tripMapper;
     }
 
+    public List<TripResponse> getAll(){
+        return tripRepository.findAll().stream().map(tripMapper::toResponse).toList();
+    }
 }
 
