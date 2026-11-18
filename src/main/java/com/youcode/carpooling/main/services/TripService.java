@@ -25,6 +25,11 @@ public class TripService {
             throw new ForbiddenActionException("This vehicle belongs to another driver");
         }
 
+        if (request.seatsOffered() > vehicle.getCapacity()) {
+            throw new InvalidRequestException("Seats offered cannot exceed the vehicle capacity ("
+                    + vehicle.getCapacity() + " seats maximum)");
+        }
+
         trip.setDriver(driver);
         trip.setVehicle(vehicle);
         return tripMapper.toResponse(tripRepository.save(trip));
