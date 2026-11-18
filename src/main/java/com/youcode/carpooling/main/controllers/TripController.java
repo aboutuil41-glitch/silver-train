@@ -8,4 +8,10 @@ public class TripController {
         this.tripService = tripService;
     }
 
+    @PostMapping
+    public ResponseEntity<TripResponse> create(@Valid @RequestBody TripRequest request){
+        TripResponse response = tripService.create(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
 }
