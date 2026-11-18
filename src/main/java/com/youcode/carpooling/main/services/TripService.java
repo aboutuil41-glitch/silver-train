@@ -21,6 +21,10 @@ public class TripService {
         Vehicle vehicle = vehicleRepository.findById(request.vehicleId())
                 .orElseThrow(() -> new ResourceNotFoundException("Vehicle " + request.vehicleId() + " not found"));
 
+        if (!vehicle.getDriver().getId().equals(driver.getId())) {
+            throw new ForbiddenActionException("This vehicle belongs to another driver");
+        }
+
         trip.setDriver(driver);
         trip.setVehicle(vehicle);
         return tripMapper.toResponse(tripRepository.save(trip));
