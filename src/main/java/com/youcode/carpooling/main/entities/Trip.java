@@ -9,4 +9,23 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Trip {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "vehicle_id", nullable = false)
+    private Vehicle vehicle;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "driver_id", nullable = false)
+    private Driver driver;
+
+    @Column(nullable = false) private String departureCity;
+    @Column(nullable = false) private String arrivalCity;
+    @Column(nullable = false) private LocalDateTime departureDate;
+    @Column(nullable = false) private int seatsOffered;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatutTrajet statut;
 }
