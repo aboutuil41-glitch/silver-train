@@ -17,7 +17,12 @@ public class TripService {
     public TripResponse create(TripRequest request) {
         Driver driver = driverRepository.findById(request.driverId())
                 .orElseThrow(() -> new ResourceNotFoundException("Driver " + request.driverId() + " not found"));
+
+        Vehicle vehicle = vehicleRepository.findById(request.vehicleId())
+                .orElseThrow(() -> new ResourceNotFoundException("Vehicle " + request.vehicleId() + " not found"));
+
         trip.setDriver(driver);
+        trip.setVehicle(vehicle);
         return tripMapper.toResponse(tripRepository.save(trip));
     }
 
