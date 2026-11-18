@@ -5,6 +5,7 @@ import com.youcode.carpooling.main.dto.TripRequest;
 import com.youcode.carpooling.main.dto.TripResponse;
 import com.youcode.carpooling.main.services.TripService;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,10 @@ public class TripController {
     @GetMapping
     public List<TripResponse> getAll(){
         return tripService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public TripResponse findById(@PathVariable Long id){
+        return tripService.findById(id);
     }
 }
