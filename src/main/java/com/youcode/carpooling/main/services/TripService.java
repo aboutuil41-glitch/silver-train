@@ -34,6 +34,11 @@ public class TripService {
             throw new InvalidRequestException("The departure must be in the future");
         }
 
+        if (request.departureCity().trim().equalsIgnoreCase(request.arrivalCity().trim())) {
+            throw new InvalidRequestException("Departure and arrival cities must be different");
+        }
+
+        Trip trip = tripMapper.toEntity(request);
         trip.setDriver(driver);
         trip.setVehicle(vehicle);
         return tripMapper.toResponse(tripRepository.save(trip));
