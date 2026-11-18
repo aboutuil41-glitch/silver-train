@@ -16,5 +16,12 @@ public class TripService {
     public List<TripResponse> getAll(){
         return tripRepository.findAll().stream().map(tripMapper::toResponse).toList();
     }
+
+    @Transactional(readOnly = true)
+    public TripResponse findById(Long id) {
+        Trip trip = tripRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Trip " + id + " not found"));
+        return tripMapper.toResponse(trip);
+    }
 }
 
