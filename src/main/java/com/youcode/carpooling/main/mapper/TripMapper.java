@@ -8,4 +8,9 @@ public interface TripMapper {
     @Mapping(target = "remainingSeats", expression = "java(trip.getSeatsOffered())")
     TripResponse toResponse(Trip trip);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "driver", ignore = true)
+    @Mapping(target = "vehicle", ignore = true)
+    @Mapping(target = "statut", ignore = true)
+    Trip toEntity(TripRequest request);
 }
