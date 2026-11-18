@@ -41,6 +41,8 @@ public class TripService {
         Trip trip = tripMapper.toEntity(request);
         trip.setDriver(driver);
         trip.setVehicle(vehicle);
+        trip.setStatut(StatutTrajet.PUBLIE);
+
         return tripMapper.toResponse(tripRepository.save(trip));
     }
 
