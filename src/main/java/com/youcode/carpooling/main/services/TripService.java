@@ -1,4 +1,26 @@
 package com.youcode.carpooling.main.services;
+
+
+import com.youcode.carpooling.common.exceptions.ForbiddenActionException;
+import com.youcode.carpooling.common.exceptions.InvalidRequestException;
+import com.youcode.carpooling.common.exceptions.ResourceNotFoundException;
+import com.youcode.carpooling.main.dto.TripRequest;
+import com.youcode.carpooling.main.dto.TripResponse;
+import com.youcode.carpooling.main.entities.Driver;
+import com.youcode.carpooling.main.entities.Trip;
+import com.youcode.carpooling.main.entities.Vehicle;
+import com.youcode.carpooling.main.enums.StatutTrajet;
+import com.youcode.carpooling.main.mapper.TripMapper;
+import com.youcode.carpooling.main.repositories.DriverRepository;
+import com.youcode.carpooling.main.repositories.TripRepository;
+import com.youcode.carpooling.main.repositories.VehicleRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
 public class TripService {
     private final TripRepository tripRepository;
     private final DriverRepository driverRepository;
